@@ -13,10 +13,10 @@ st.title("🚌 Shuttle Bus Timetable")
 # LOAD DATA
 # -----------------------------
 df = pd.read_csv("buses.csv")
-df["Time"] = pd.to_datetime(df["Time"]).dt.tz_localize("Asia/Tokyo")
+df["Time"] = pd.to_datetime(df["Time"], utc=True).dt.tz_convert("Asia/Tokyo")
 
-now = pd.Timestamp.now()
-now = now.tz_localize("Asia/Tokyo")
+now = pd.Timestamp.utcnow()
+now = now.tz_convert("Asia/Tokyo")
 
 # -----------------------------
 # ROUTE + STOPS SELECTION
@@ -141,10 +141,10 @@ path = [[lat, lon] for lon, lat in route]
 # TIMETABLE (SIMULATED FROM CSV LOGIC)
 # -----------------------------
 df = pd.read_csv("buses.csv")
-df["Time"] = pd.to_datetime(df["Time"]).dt.tz_localize("Asia/Tokyo")
+df["Time"] = pd.to_datetime(df["Time"], utc=True).dt.tz_convert("Asia/Tokyo")
 
-now = pd.Timestamp.now()
-now = now.tz_localize("Asia/Tokyo")
+now = pd.Timestamp.utcnow()
+now = now.tz_convert("Asia/Tokyo")
 
 # each bus = one departure time
 buses = df.groupby("BusNumber").first().reset_index()
