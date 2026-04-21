@@ -1,0 +1,248 @@
+Route,Stop,BusNumber,Date,Time,Time,StopOrder
+Toyonaka -> Suita,Toyonaka,2,2026-04-22,8:00,2026-04-22 8:00,1
+Toyonaka -> Suita,Toyonaka,3,2026-04-22,8:05,2026-04-22 8:05,1
+Toyonaka -> Suita,Toyonaka,4,2026-04-22,8:10,2026-04-22 8:10,1
+Toyonaka -> Suita,Toyonaka,5,2026-04-22,8:15,2026-04-22 8:15,1
+Toyonaka -> Suita,Toyonaka,6,2026-04-22,8:45,2026-04-22 8:45,1
+Toyonaka -> Suita,Toyonaka,7,2026-04-22,9:00,2026-04-22 9:00,1
+Toyonaka -> Suita,Toyonaka,8,2026-04-22,9:20,2026-04-22 9:20,1
+Toyonaka -> Suita,Toyonaka,9,2026-04-22,9:45,2026-04-22 9:45,1
+Toyonaka -> Suita,Toyonaka,10,2026-04-22,9:50,2026-04-22 9:50,1
+Toyonaka -> Suita,Toyonaka,11,2026-04-22,9:55,2026-04-22 9:55,1
+Toyonaka -> Suita,Toyonaka,12,2026-04-22,10:00,2026-04-22 10:00,1
+Toyonaka -> Suita,Toyonaka,13,2026-04-22,10:40,2026-04-22 10:40,1
+Toyonaka -> Suita,Toyonaka,14,2026-04-22,10:50,2026-04-22 10:50,1
+Toyonaka -> Suita,Toyonaka,15,2026-04-22,11:30,2026-04-22 11:30,1
+Toyonaka -> Suita,Toyonaka,16,2026-04-22,12:05,2026-04-22 12:05,1
+Toyonaka -> Suita,Toyonaka,17,2026-04-22,12:10,2026-04-22 12:10,1
+Toyonaka -> Suita,Toyonaka,18,2026-04-22,12:15,2026-04-22 12:15,1
+Toyonaka -> Suita,Toyonaka,19,2026-04-22,12:40,2026-04-22 12:40,1
+Toyonaka -> Suita,Toyonaka,20,2026-04-22,12:45,2026-04-22 12:45,1
+Toyonaka -> Suita,Toyonaka,21,2026-04-22,12:55,2026-04-22 12:55,1
+Toyonaka -> Suita,Toyonaka,22,2026-04-22,13:05,2026-04-22 13:05,1
+Toyonaka -> Suita,Toyonaka,23,2026-04-22,13:35,2026-04-22 13:35,1
+Toyonaka -> Suita,Toyonaka,24,2026-04-22,14:25,2026-04-22 14:25,1
+Toyonaka -> Suita,Toyonaka,25,2026-04-22,15:10,2026-04-22 15:10,1
+Toyonaka -> Suita,Toyonaka,26,2026-04-22,15:30,2026-04-22 15:30,1
+Toyonaka -> Suita,Toyonaka,27,2026-04-22,15:45,2026-04-22 15:45,1
+Toyonaka -> Suita,Toyonaka,28,2026-04-22,16:00,2026-04-22 16:00,1
+Toyonaka -> Suita,Toyonaka,29,2026-04-22,16:30,2026-04-22 16:30,1
+Toyonaka -> Suita,Toyonaka,30,2026-04-22,16:40,2026-04-22 16:40,1
+Toyonaka -> Suita,Toyonaka,31,2026-04-22,16:55,2026-04-22 16:55,1
+Toyonaka -> Suita,Toyonaka,32,2026-04-22,17:20,2026-04-22 17:20,1
+Toyonaka -> Suita,Toyonaka,33,2026-04-22,17:25,2026-04-22 17:25,1
+Toyonaka -> Suita,Toyonaka,34,2026-04-22,17:40,2026-04-22 17:40,1
+Toyonaka -> Suita,Toyonaka,35,2026-04-22,18:00,2026-04-22 18:00,1
+Toyonaka -> Suita,Toyonaka,36,2026-04-22,18:10,2026-04-22 18:10,1
+Toyonaka -> Suita,Toyonaka,37,2026-04-22,18:30,2026-04-22 18:30,1
+Toyonaka -> Suita,Toyonaka,38,2026-04-22,18:55,2026-04-22 18:55,1
+Toyonaka -> Suita,Toyonaka,39,2026-04-22,19:25,2026-04-22 19:25,1
+Toyonaka -> Suita,Toyonaka,40,2026-04-22,20:10,2026-04-22 20:10,1
+Toyonaka -> Suita,Minoh,1,2026-04-22,7:35,2026-04-22 7:35,2
+Toyonaka -> Suita,Minoh,5,2026-04-22,8:35,2026-04-22 8:35,2
+Toyonaka -> Suita,Minoh,8,2026-04-22,9:40,2026-04-22 9:40,2
+Toyonaka -> Suita,Minoh,11,2026-04-22,10:15,2026-04-22 10:15,2
+Toyonaka -> Suita,Minoh,12,2026-04-22,10:20,2026-04-22 10:20,2
+Toyonaka -> Suita,Minoh,15,2026-04-22,11:50,2026-04-22 11:50,2
+Toyonaka -> Suita,Minoh,18,2026-04-22,12:35,2026-04-22 12:35,2
+Toyonaka -> Suita,Minoh,19,2026-04-22,13:00,2026-04-22 13:00,2
+Toyonaka -> Suita,Minoh,22,2026-04-22,13:25,2026-04-22 13:25,2
+Toyonaka -> Suita,Minoh,23,2026-04-22,13:55,2026-04-22 13:55,2
+Toyonaka -> Suita,Minoh,24,2026-04-22,14:45,2026-04-22 14:45,2
+Toyonaka -> Suita,Minoh,25,2026-04-22,15:30,2026-04-22 15:30,2
+Toyonaka -> Suita,Minoh,27,2026-04-22,16:05,2026-04-22 16:05,2
+Toyonaka -> Suita,Minoh,28,2026-04-22,16:20,2026-04-22 16:20,2
+Toyonaka -> Suita,Minoh,30,2026-04-22,17:00,2026-04-22 17:00,2
+Toyonaka -> Suita,Minoh,32,2026-04-22,17:40,2026-04-22 17:40,2
+Toyonaka -> Suita,Minoh,34,2026-04-22,18:00,2026-04-22 18:00,2
+Toyonaka -> Suita,Minoh,36,2026-04-22,18:30,2026-04-22 18:30,2
+Toyonaka -> Suita,Minoh,37,2026-04-22,18:50,2026-04-22 18:50,2
+Toyonaka -> Suita,Minoh,39,2026-04-22,19:45,2026-04-22 19:45,2
+Toyonaka -> Suita,Minoh,40,2026-04-22,20:30,2026-04-22 20:30,2
+Toyonaka -> Suita,Convention Center,1,2026-04-22,7:50,2026-04-22 7:50,3
+Toyonaka -> Suita,Convention Center,2,2026-04-22,8:25,2026-04-22 8:25,3
+Toyonaka -> Suita,Convention Center,3,2026-04-22,8:30,2026-04-22 8:30,3
+Toyonaka -> Suita,Convention Center,4,2026-04-22,8:35,2026-04-22 8:35,3
+Toyonaka -> Suita,Convention Center,6,2026-04-22,9:10,2026-04-22 9:10,3
+Toyonaka -> Suita,Convention Center,7,2026-04-22,9:25,2026-04-22 9:25,3
+Toyonaka -> Suita,Convention Center,8,2026-04-22,9:55,2026-04-22 9:55,3
+Toyonaka -> Suita,Convention Center,9,2026-04-22,10:10,2026-04-22 10:10,3
+Toyonaka -> Suita,Convention Center,10,2026-04-22,10:15,2026-04-22 10:15,3
+Toyonaka -> Suita,Convention Center,13,2026-04-22,11:05,2026-04-22 11:05,3
+Toyonaka -> Suita,Convention Center,14,2026-04-22,11:15,2026-04-22 11:15,3
+Toyonaka -> Suita,Convention Center,15,2026-04-22,12:05,2026-04-22 12:05,3
+Toyonaka -> Suita,Convention Center,16,2026-04-22,12:30,2026-04-22 12:30,3
+Toyonaka -> Suita,Convention Center,17,2026-04-22,12:35,2026-04-22 12:35,3
+Toyonaka -> Suita,Convention Center,19,2026-04-22,13:15,2026-04-22 13:15,3
+Toyonaka -> Suita,Convention Center,20,2026-04-22,13:10,2026-04-22 13:10,3
+Toyonaka -> Suita,Convention Center,21,2026-04-22,13:20,2026-04-22 13:20,3
+Toyonaka -> Suita,Convention Center,23,2026-04-22,14:10,2026-04-22 14:10,3
+Toyonaka -> Suita,Convention Center,24,2026-04-22,15:00,2026-04-22 15:00,3
+Toyonaka -> Suita,Convention Center,25,2026-04-22,15:45,2026-04-22 15:45,3
+Toyonaka -> Suita,Convention Center,26,2026-04-22,15:55,2026-04-22 15:55,3
+Toyonaka -> Suita,Convention Center,28,2026-04-22,16:35,2026-04-22 16:35,3
+Toyonaka -> Suita,Convention Center,29,2026-04-22,16:55,2026-04-22 16:55,3
+Toyonaka -> Suita,Convention Center,31,2026-04-22,17:20,2026-04-22 17:20,3
+Toyonaka -> Suita,Convention Center,32,2026-04-22,17:55,2026-04-22 17:55,3
+Toyonaka -> Suita,Convention Center,33,2026-04-22,17:50,2026-04-22 17:50,3
+Toyonaka -> Suita,Convention Center,34,2026-04-22,18:15,2026-04-22 18:15,3
+Toyonaka -> Suita,Convention Center,35,2026-04-22,18:25,2026-04-22 18:25,3
+Toyonaka -> Suita,Convention Center,37,2026-04-22,19:05,2026-04-22 19:05,3
+Toyonaka -> Suita,Convention Center,38,2026-04-22,19:20,2026-04-22 19:20,3
+Toyonaka -> Suita,Convention Center,39,2026-04-22,20:00,2026-04-22 20:00,3
+Toyonaka -> Suita,Convention Center,40,2026-04-22,20:45,2026-04-22 20:45,3
+Toyonaka -> Suita,School of Engineering,1,2026-04-22,7:55,2026-04-22 7:55,4
+Toyonaka -> Suita,School of Engineering,2,2026-04-22,8:30,2026-04-22 8:30,4
+Toyonaka -> Suita,School of Engineering,3,2026-04-22,8:35,2026-04-22 8:35,4
+Toyonaka -> Suita,School of Engineering,4,2026-04-22,8:40,2026-04-22 8:40,4
+Toyonaka -> Suita,School of Engineering,6,2026-04-22,9:15,2026-04-22 9:15,4
+Toyonaka -> Suita,School of Engineering,7,2026-04-22,9:30,2026-04-22 9:30,4
+Toyonaka -> Suita,School of Engineering,8,2026-04-22,10:00,2026-04-22 10:00,4
+Toyonaka -> Suita,School of Engineering,9,2026-04-22,10:15,2026-04-22 10:15,4
+Toyonaka -> Suita,School of Engineering,10,2026-04-22,10:20,2026-04-22 10:20,4
+Toyonaka -> Suita,School of Engineering,13,2026-04-22,11:10,2026-04-22 11:10,4
+Toyonaka -> Suita,School of Engineering,14,2026-04-22,11:20,2026-04-22 11:20,4
+Toyonaka -> Suita,School of Engineering,15,2026-04-22,12:10,2026-04-22 12:10,4
+Toyonaka -> Suita,School of Engineering,16,2026-04-22,12:35,2026-04-22 12:35,4
+Toyonaka -> Suita,School of Engineering,17,2026-04-22,12:40,2026-04-22 12:40,4
+Toyonaka -> Suita,School of Engineering,19,2026-04-22,13:20,2026-04-22 13:20,4
+Toyonaka -> Suita,School of Engineering,20,2026-04-22,13:15,2026-04-22 13:15,4
+Toyonaka -> Suita,School of Engineering,21,2026-04-22,13:25,2026-04-22 13:25,4
+Toyonaka -> Suita,School of Engineering,23,2026-04-22,14:15,2026-04-22 14:15,4
+Toyonaka -> Suita,School of Engineering,24,2026-04-22,15:05,2026-04-22 15:05,4
+Toyonaka -> Suita,School of Engineering,25,2026-04-22,15:50,2026-04-22 15:50,4
+Toyonaka -> Suita,School of Engineering,26,2026-04-22,16:00,2026-04-22 16:00,4
+Toyonaka -> Suita,School of Engineering,28,2026-04-22,16:40,2026-04-22 16:40,4
+Toyonaka -> Suita,School of Engineering,29,2026-04-22,17:00,2026-04-22 17:00,4
+Toyonaka -> Suita,School of Engineering,31,2026-04-22,17:25,2026-04-22 17:25,4
+Toyonaka -> Suita,School of Engineering,32,2026-04-22,18:00,2026-04-22 18:00,4
+Toyonaka -> Suita,School of Engineering,33,2026-04-22,17:55,2026-04-22 17:55,4
+Toyonaka -> Suita,School of Engineering,34,2026-04-22,18:20,2026-04-22 18:20,4
+Toyonaka -> Suita,School of Engineering,35,2026-04-22,18:30,2026-04-22 18:30,4
+Toyonaka -> Suita,School of Engineering,37,2026-04-22,19:10,2026-04-22 19:10,4
+Toyonaka -> Suita,School of Engineering,38,2026-04-22,19:25,2026-04-22 19:25,4
+Toyonaka -> Suita,School of Engineering,39,2026-04-22,20:05,2026-04-22 20:05,4
+Toyonaka -> Suita,School of Engineering,40,2026-04-22,20:50,2026-04-22 20:50,4
+Suita -> Toyonaka,School of Engineering,1,2026-04-22,7:55,2026-04-22 7:55,1
+Suita -> Toyonaka,School of Engineering,2,2026-04-22,8:30,2026-04-22 8:30,1
+Suita -> Toyonaka,School of Engineering,4,2026-04-22,8:55,2026-04-22 8:55,1
+Suita -> Toyonaka,School of Engineering,5,2026-04-22,9:20,2026-04-22 9:20,1
+Suita -> Toyonaka,School of Engineering,6,2026-04-22,9:30,2026-04-22 9:30,1
+Suita -> Toyonaka,School of Engineering,7,2026-04-22,10:00,2026-04-22 10:00,1
+Suita -> Toyonaka,School of Engineering,9,2026-04-22,10:40,2026-04-22 10:40,1
+Suita -> Toyonaka,School of Engineering,10,2026-04-22,11:15,2026-04-22 11:15,1
+Suita -> Toyonaka,School of Engineering,11,2026-04-22,11:20,2026-04-22 11:20,1
+Suita -> Toyonaka,School of Engineering,12,2026-04-22,12:10,2026-04-22 12:10,1
+Suita -> Toyonaka,School of Engineering,13,2026-04-22,12:15,2026-04-22 12:15,1
+Suita -> Toyonaka,School of Engineering,15,2026-04-22,12:35,2026-04-22 12:35,1
+Suita -> Toyonaka,School of Engineering,16,2026-04-22,12:40,2026-04-22 12:40,1
+Suita -> Toyonaka,School of Engineering,17,2026-04-22,13:35,2026-04-22 13:35,1
+Suita -> Toyonaka,School of Engineering,18,2026-04-22,14:15,2026-04-22 14:15,1
+Suita -> Toyonaka,School of Engineering,20,2026-04-22,15:10,2026-04-22 15:10,1
+Suita -> Toyonaka,School of Engineering,22,2026-04-22,15:15,2026-04-22 15:15,1
+Suita -> Toyonaka,School of Engineering,23,2026-04-22,16:00,2026-04-22 16:00,1
+Suita -> Toyonaka,School of Engineering,25,2026-04-22,16:05,2026-04-22 16:05,1
+Suita -> Toyonaka,School of Engineering,26,2026-04-22,16:50,2026-04-22 16:50,1
+Suita -> Toyonaka,School of Engineering,29,2026-04-22,17:00,2026-04-22 17:00,1
+Suita -> Toyonaka,School of Engineering,30,2026-04-22,17:25,2026-04-22 17:25,1
+Suita -> Toyonaka,School of Engineering,31,2026-04-22,17:55,2026-04-22 17:55,1
+Suita -> Toyonaka,School of Engineering,32,2026-04-22,18:10,2026-04-22 18:10,1
+Suita -> Toyonaka,School of Engineering,34,2026-04-22,18:30,2026-04-22 18:30,1
+Suita -> Toyonaka,School of Engineering,35,2026-04-22,18:40,2026-04-22 18:40,1
+Suita -> Toyonaka,School of Engineering,36,2026-04-22,19:10,2026-04-22 19:10,1
+Suita -> Toyonaka,School of Engineering,37,2026-04-22,19:45,2026-04-22 19:45,1
+Suita -> Toyonaka,School of Engineering,38,2026-04-22,20:10,2026-04-22 20:10,1
+Suita -> Toyonaka,School of Engineering,39,2026-04-22,20:20,2026-04-22 20:20,1
+Suita -> Toyonaka,School of Human Studies,1,2026-04-22,8:00,2026-04-22 8:00,2
+Suita -> Toyonaka,School of Human Studies,2,2026-04-22,8:35,2026-04-22 8:35,2
+Suita -> Toyonaka,School of Human Studies,4,2026-04-22,9:00,2026-04-22 9:00,2
+Suita -> Toyonaka,School of Human Studies,5,2026-04-22,9:25,2026-04-22 9:25,2
+Suita -> Toyonaka,School of Human Studies,6,2026-04-22,9:35,2026-04-22 9:35,2
+Suita -> Toyonaka,School of Human Studies,7,2026-04-22,10:05,2026-04-22 10:05,2
+Suita -> Toyonaka,School of Human Studies,9,2026-04-22,10:45,2026-04-22 10:45,2
+Suita -> Toyonaka,School of Human Studies,10,2026-04-22,11:20,2026-04-22 11:20,2
+Suita -> Toyonaka,School of Human Studies,11,2026-04-22,11:25,2026-04-22 11:25,2
+Suita -> Toyonaka,School of Human Studies,12,2026-04-22,12:15,2026-04-22 12:15,2
+Suita -> Toyonaka,School of Human Studies,13,2026-04-22,12:20,2026-04-22 12:20,2
+Suita -> Toyonaka,School of Human Studies,15,2026-04-22,12:40,2026-04-22 12:40,2
+Suita -> Toyonaka,School of Human Studies,16,2026-04-22,12:45,2026-04-22 12:45,2
+Suita -> Toyonaka,School of Human Studies,17,2026-04-22,13:40,2026-04-22 13:40,2
+Suita -> Toyonaka,School of Human Studies,18,2026-04-22,14:20,2026-04-22 14:20,2
+Suita -> Toyonaka,School of Human Studies,20,2026-04-22,15:15,2026-04-22 15:15,2
+Suita -> Toyonaka,School of Human Studies,22,2026-04-22,15:20,2026-04-22 15:20,2
+Suita -> Toyonaka,School of Human Studies,23,2026-04-22,16:05,2026-04-22 16:05,2
+Suita -> Toyonaka,School of Human Studies,25,2026-04-22,16:10,2026-04-22 16:10,2
+Suita -> Toyonaka,School of Human Studies,26,2026-04-22,16:55,2026-04-22 16:55,2
+Suita -> Toyonaka,School of Human Studies,29,2026-04-22,17:05,2026-04-22 17:05,2
+Suita -> Toyonaka,School of Human Studies,30,2026-04-22,17:30,2026-04-22 17:30,2
+Suita -> Toyonaka,School of Human Studies,31,2026-04-22,18:10,2026-04-22 18:10,2
+Suita -> Toyonaka,School of Human Studies,32,2026-04-22,18:15,2026-04-22 18:15,2
+Suita -> Toyonaka,School of Human Studies,34,2026-04-22,18:35,2026-04-22 18:35,2
+Suita -> Toyonaka,School of Human Studies,35,2026-04-22,18:45,2026-04-22 18:45,2
+Suita -> Toyonaka,School of Human Studies,36,2026-04-22,19:15,2026-04-22 19:15,2
+Suita -> Toyonaka,School of Human Studies,37,2026-04-22,19:50,2026-04-22 19:50,2
+Suita -> Toyonaka,School of Human Studies,38,2026-04-22,20:15,2026-04-22 20:15,2
+Suita -> Toyonaka,School of Human Studies,39,2026-04-22,20:25,2026-04-22 20:25,2
+Suita -> Toyonaka,Minoh,1,2026-04-22,8:20,2026-04-22 8:20,3
+Suita -> Toyonaka,Minoh,2,2026-04-22,8:55,2026-04-22 8:55,3
+Suita -> Toyonaka,Minoh,3,2026-04-22,8:35,2026-04-22 8:35,3
+Suita -> Toyonaka,Minoh,4,2026-04-22,9:20,2026-04-22 9:20,3
+Suita -> Toyonaka,Minoh,7,2026-04-22,10:25,2026-04-22 10:25,3
+Suita -> Toyonaka,Minoh,8,2026-04-22,10:15,2026-04-22 10:15,3
+Suita -> Toyonaka,Minoh,9,2026-04-22,11:05,2026-04-22 11:05,3
+Suita -> Toyonaka,Minoh,10,2026-04-22,11:40,2026-04-22 11:40,3
+Suita -> Toyonaka,Minoh,14,2026-04-22,12:35,2026-04-22 12:35,3
+Suita -> Toyonaka,Minoh,16,2026-04-22,13:05,2026-04-22 13:05,3
+Suita -> Toyonaka,Minoh,17,2026-04-22,14:00,2026-04-22 14:00,3
+Suita -> Toyonaka,Minoh,18,2026-04-22,14:40,2026-04-22 14:40,3
+Suita -> Toyonaka,Minoh,19,2026-04-22,15:10,2026-04-22 15:10,3
+Suita -> Toyonaka,Minoh,21,2026-04-22,15:15,2026-04-22 15:15,3
+Suita -> Toyonaka,Minoh,24,2026-04-22,16:05,2026-04-22 16:05,3
+Suita -> Toyonaka,Minoh,25,2026-04-22,16:30,2026-04-22 16:30,3
+Suita -> Toyonaka,Minoh,27,2026-04-22,16:55,2026-04-22 16:55,3
+Suita -> Toyonaka,Minoh,28,2026-04-22,17:00,2026-04-22 17:00,3
+Suita -> Toyonaka,Minoh,30,2026-04-22,17:50,2026-04-22 17:50,3
+Suita -> Toyonaka,Minoh,32,2026-04-22,18:35,2026-04-22 18:35,3
+Suita -> Toyonaka,Minoh,33,2026-04-22,18:30,2026-04-22 18:30,3
+Suita -> Toyonaka,Minoh,36,2026-04-22,19:35,2026-04-22 19:35,3
+Suita -> Toyonaka,Minoh,37,2026-04-22,20:10,2026-04-22 20:10,3
+Suita -> Toyonaka,Minoh,38,2026-04-22,20:35,2026-04-22 20:35,3
+Suita -> Toyonaka,Toyonaka,1,2026-04-22,8:40,2026-04-22 8:40,4
+Suita -> Toyonaka,Toyonaka,2,2026-04-22,9:15,2026-04-22 9:15,4
+Suita -> Toyonaka,Toyonaka,3,2026-04-22,8:55,2026-04-22 8:55,4
+Suita -> Toyonaka,Toyonaka,4,2026-04-22,9:40,2026-04-22 9:40,4
+Suita -> Toyonaka,Toyonaka,5,2026-04-22,9:50,2026-04-22 9:50,4
+Suita -> Toyonaka,Toyonaka,6,2026-04-22,10:00,2026-04-22 10:00,4
+Suita -> Toyonaka,Toyonaka,7,2026-04-22,10:45,2026-04-22 10:45,4
+Suita -> Toyonaka,Toyonaka,8,2026-04-22,10:35,2026-04-22 10:35,4
+Suita -> Toyonaka,Toyonaka,9,2026-04-22,11:25,2026-04-22 11:25,4
+Suita -> Toyonaka,Toyonaka,10,2026-04-22,12:00,2026-04-22 12:00,4
+Suita -> Toyonaka,Toyonaka,11,2026-04-22,11:50,2026-04-22 11:50,4
+Suita -> Toyonaka,Toyonaka,12,2026-04-22,12:40,2026-04-22 12:40,4
+Suita -> Toyonaka,Toyonaka,13,2026-04-22,12:45,2026-04-22 12:45,4
+Suita -> Toyonaka,Toyonaka,14,2026-04-22,12:55,2026-04-22 12:55,4
+Suita -> Toyonaka,Toyonaka,15,2026-04-22,13:05,2026-04-22 13:05,4
+Suita -> Toyonaka,Toyonaka,16,2026-04-22,13:25,2026-04-22 13:25,4
+Suita -> Toyonaka,Toyonaka,17,2026-04-22,14:20,2026-04-22 14:20,4
+Suita -> Toyonaka,Toyonaka,18,2026-04-22,15:00,2026-04-22 15:00,4
+Suita -> Toyonaka,Toyonaka,19,2026-04-22,15:30,2026-04-22 15:30,4
+Suita -> Toyonaka,Toyonaka,20,2026-04-22,15:40,2026-04-22 15:40,4
+Suita -> Toyonaka,Toyonaka,21,2026-04-22,15:35,2026-04-22 15:35,4
+Suita -> Toyonaka,Toyonaka,22,2026-04-22,15:45,2026-04-22 15:45,4
+Suita -> Toyonaka,Toyonaka,23,2026-04-22,16:30,2026-04-22 16:30,4
+Suita -> Toyonaka,Toyonaka,24,2026-04-22,16:25,2026-04-22 16:25,4
+Suita -> Toyonaka,Toyonaka,25,2026-04-22,16:50,2026-04-22 16:50,4
+Suita -> Toyonaka,Toyonaka,26,2026-04-22,17:20,2026-04-22 17:20,4
+Suita -> Toyonaka,Toyonaka,27,2026-04-22,17:15,2026-04-22 17:15,4
+Suita -> Toyonaka,Toyonaka,28,2026-04-22,17:20,2026-04-22 17:20,4
+Suita -> Toyonaka,Toyonaka,29,2026-04-22,17:30,2026-04-22 17:30,4
+Suita -> Toyonaka,Toyonaka,30,2026-04-22,18:10,2026-04-22 18:10,4
+Suita -> Toyonaka,Toyonaka,31,2026-04-22,18:25,2026-04-22 18:25,4
+Suita -> Toyonaka,Toyonaka,32,2026-04-22,18:55,2026-04-22 18:55,4
+Suita -> Toyonaka,Toyonaka,33,2026-04-22,18:50,2026-04-22 18:50,4
+Suita -> Toyonaka,Toyonaka,34,2026-04-22,19:00,2026-04-22 19:00,4
+Suita -> Toyonaka,Toyonaka,35,2026-04-22,19:10,2026-04-22 19:10,4
+Suita -> Toyonaka,Toyonaka,36,2026-04-22,19:55,2026-04-22 19:55,4
+Suita -> Toyonaka,Toyonaka,37,2026-04-22,20:30,2026-04-22 20:30,4
+Suita -> Toyonaka,Toyonaka,38,2026-04-22,20:55,2026-04-22 20:55,4
+Suita -> Toyonaka,Toyonaka,39,2026-04-22,20:50,2026-04-22 20:50,4
