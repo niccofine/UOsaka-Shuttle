@@ -15,9 +15,12 @@ st.title("🚌 Shuttle Bus Timetable")
 df = pd.read_csv("buses.csv")
 df["Time"] = pd.to_datetime(df["Time"])
 df["Time"] = df["Time"].dt.tz_localize("Asia/Tokyo")
-
 now = pd.Timestamp.utcnow()
 now = now.tz_convert("Asia/Tokyo")
+df["Time"] = df["Time"].apply(
+    lambda t: now.normalize() + pd.Timedelta(hours=t.hour, minutes=t.minute)
+)
+df.loc[df["Time"] < now, "Time"] += pd.Timedelta(days=1)
 
 # -----------------------------
 # ROUTE + STOPS SELECTION
@@ -144,9 +147,12 @@ path = [[lat, lon] for lon, lat in route]
 df = pd.read_csv("buses.csv")
 df["Time"] = pd.to_datetime(df["Time"])
 df["Time"] = df["Time"].dt.tz_localize("Asia/Tokyo")
-
 now = pd.Timestamp.utcnow()
 now = now.tz_convert("Asia/Tokyo")
+df["Time"] = df["Time"].apply(
+    lambda t: now.normalize() + pd.Timedelta(hours=t.hour, minutes=t.minute)
+)
+df.loc[df["Time"] < now, "Time"] += pd.Timedelta(days=1)
 
 # each bus = one departure time
 buses = df.groupby("BusNumber").first().reset_index()
