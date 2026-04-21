@@ -13,7 +13,7 @@ st.title("🚌 Shuttle Bus Timetable")
 # LOAD DATA
 # -----------------------------
 df = pd.read_csv("buses.csv")
-df["Time"] = pd.to_datetime(df["Time"]).dt.tz_convert("Asia/Tokyo")
+df["Time"] = pd.to_datetime(df["Time"])
 
 now = pd.Timestamp.now()
 
@@ -140,7 +140,7 @@ path = [[lat, lon] for lon, lat in route]
 # TIMETABLE (SIMULATED FROM CSV LOGIC)
 # -----------------------------
 df = pd.read_csv("buses.csv")
-df["Time"] = pd.to_datetime(df["Time"]).dt.tz_convert("Asia/Tokyo")
+df["Time"] = pd.to_datetime(df["Time"])
 
 now = pd.Timestamp.now(tz="Asia/Tokyo")
 
