@@ -1,5 +1,7 @@
 import streamlit as st
 import pandas as pd
+from datetime import datetime
+import pytz
 
 # -----------------------------
 # PAGE CONFIG
@@ -12,7 +14,7 @@ st.title("🚌 Shuttle Bus Timetable")
 # LOAD DATA
 # -----------------------------
 df = pd.read_csv("buses.csv")
-df["Time"] = pd.to_datetime(df["Time"])
+df["Time"] = pd.to_datetime(df["Time"]).dt.tz_convert("Asia/Tokyo")
 
 now = pd.Timestamp.now()
 
@@ -139,9 +141,9 @@ path = [[lat, lon] for lon, lat in route]
 # TIMETABLE (SIMULATED FROM CSV LOGIC)
 # -----------------------------
 df = pd.read_csv("buses.csv")
-df["Time"] = pd.to_datetime(df["Time"])
+df["Time"] = pd.to_datetime(df["Time"]).dt.tz_convert("Asia/Tokyo")
 
-now = pd.Timestamp.now()
+now = pd.Timestamp.now(tz="Asia/Tokyo")
 
 # each bus = one departure time
 buses = df.groupby("BusNumber").first().reset_index()
@@ -180,8 +182,11 @@ for _, bus in buses.iterrows():
     if now < dep_time or now > arr_time:
         continue
 
-    progress = (now - dep_time) / (arr_time - dep_time)
-    progress = progress.total_seconds() / 1  # normalize
+    delta_total = (arr_time - dep_time).total_seconds()
+    delta_now = (now - dep_time).total_seconds()
+    
+    progress = delta_now / delta_total if delta_total > 0 else 0
+    progress = max(0, min(1, progress))
 
     pos = interpolate(path, progress)
 
