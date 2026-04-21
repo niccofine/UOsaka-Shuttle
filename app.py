@@ -16,6 +16,7 @@ df = pd.read_csv("buses.csv")
 df["Time"] = pd.to_datetime(df["Time"]).dt.tz_localize("Asia/Tokyo")
 
 now = pd.Timestamp.now()
+now = now.tz_localize("Asia/Tokyo")
 
 # -----------------------------
 # ROUTE + STOPS SELECTION
@@ -142,7 +143,8 @@ path = [[lat, lon] for lon, lat in route]
 df = pd.read_csv("buses.csv")
 df["Time"] = pd.to_datetime(df["Time"]).dt.tz_localize("Asia/Tokyo")
 
-now = pd.Timestamp.now(tz="Asia/Tokyo")
+now = pd.Timestamp.now()
+now = now.tz_localize("Asia/Tokyo")
 
 # each bus = one departure time
 buses = df.groupby("BusNumber").first().reset_index()
