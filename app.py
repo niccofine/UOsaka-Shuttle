@@ -110,6 +110,18 @@ st.write("\n".join(timeline))
 
 st.divider()
 
+# -----------------------------
+# NEXT BUSES PREVIEW
+# -----------------------------
+st.markdown("### ⏭️ Next buses from this stop")
+
+for i in range(min(3, len(next_buses))):
+    b = next_buses.iloc[i]
+    m = int((b["Time"] - now).total_seconds() / 60)
+    st.write(f"🚌 Bus {b['BusNumber']} — {b['Time'].strftime('%H:%M')} ({m} min)")
+
+st.divider()
+
 import streamlit as st
 import pandas as pd
 import requests
