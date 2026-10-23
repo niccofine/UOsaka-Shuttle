@@ -25,18 +25,46 @@ df.loc[df["Time"] < now, "Time"] += pd.Timedelta(days=1)
 # -----------------------------
 # ROUTE + STOPS SELECTION
 # -----------------------------
-routes = df["Route"].unique()
-route = st.selectbox("Route", routes)
+def route_stops(r):
+    return list(df[df["Route"] == r].sort_values("StopOrder")["Stop"].unique())
 
-stops = df[df["Route"] == route]["Stop"].unique()
+
+def on_route_change():
+    stops = route_stops(st.session_state["route"])
+    old_from = st.session_state.get("origin")
+    old_to = st.session_state.get("destination")
+    new_from, new_to = old_to, old_from
+    if new_from not in stops or new_to not in stops or new_from == new_to:
+        new_from, new_to = stops[0], stops[-1]
+    st.session_state["origin"] = new_from
+    st.session_state["destination"] = new_to
+
+
+routes = df["Route"].unique()
+route = st.selectbox("Route", routes, key="route", on_change=on_route_change)
+
+stops = route_stops(route)
+
+# Defaults: opposite ends; repair state if it is invalid for this route
+if st.session_state.get("origin") not in stops:
+    st.session_state["origin"] = stops[0]
+if st.session_state.get("destination") not in stops:
+    st.session_state["destination"] = stops[-1]
+if st.session_state["origin"] == st.session_state["destination"]:
+    st.session_state["destination"] = stops[-1] if st.session_state["origin"] != stops[-1] else stops[0]
 
 col1, col2 = st.columns(2)
 
+# Each selector excludes the other's current choice, so they can never match
 with col1:
-    origin = st.selectbox("From", stops)
+    origin = st.selectbox(
+        "From", [s for s in stops if s != st.session_state["destination"]], key="origin"
+    )
 
 with col2:
-    destination = st.selectbox("To", stops)
+    destination = st.selectbox(
+        "To", [s for s in stops if s != st.session_state["origin"]], key="destination"
+    )
 
 # -----------------------------
 # FILTER FUTURE BUSES FROM ORIGIN
