@@ -1,10 +1,13 @@
 import streamlit as st
+import json
 import pandas as pd
+import requests
+import streamlit.components.v1 as components
 
 # -----------------------------
 # PAGE CONFIG
 # -----------------------------
-st.set_page_config(page_title="Shuttle Bus", page_icon=":material/directions_bus:", layout="centered")
+st.set_page_config(page_title="Shuttle Bus", page_icon="favicon.png", layout="centered")
 
 # -----------------------------
 # ICONS
@@ -67,10 +70,17 @@ header[data-testid="stHeader"] { background: transparent; }
 .app-head p { margin: 0; color: var(--muted); font-size: .85rem; }
 
 .st-key-hero { border: 1px solid var(--border) !important; background: var(--surface);
-  border-radius: 16px !important; padding: 1rem 1.25rem !important; margin: 1rem 0; }
+  border-radius: 16px !important; padding: 1.25rem !important; margin: 1rem 0; gap: 1rem; }
+.st-key-hero [data-testid="stMarkdownContainer"] p { margin: 0; }
+.st-key-hero .stats { margin-top: .5rem; }
+.fine { color: var(--muted); font-size: .75rem; line-height: 1.4; }
+.fine a { color: inherit; text-decoration: underline; }
+.footer { margin-top: 2rem; text-align: center; }
+.st-key-hero .stats .stat { padding-bottom: 0; }
 .st-key-hero [data-testid="stHorizontalBlock"] { flex-wrap: nowrap !important; gap: .5rem; }
 .st-key-hero [data-testid="stColumn"] { min-width: 0 !important; }
 .st-key-hero button { border-radius: 10px; }
+.st-key-hero iframe { border-radius: 12px; border: 1px solid var(--border); }
 .st-key-nbs button { justify-content: flex-start; border-radius: 12px; padding: .7rem 1rem; }
 .st-key-nbs button[kind="primary"] { background: var(--accent-soft); color: inherit;
   border: 1px solid var(--accent); }
@@ -140,7 +150,7 @@ header[data-testid="stHeader"] { background: transparent; }
 html(f"""
 <div class="app-head">
   <div class="logo">{icon("bus", 24)}</div>
-  <div><h1>Shuttle Bus</h1><p>Live timetable &middot; Asia/Tokyo</p></div>
+  <div><h1>Shuttle Bus</h1><p>Live timetable &middot; Asia/Osaka</p></div>
 </div>
 """)
 
@@ -148,6 +158,10 @@ html(f"""
 # LOAD DATA
 # -----------------------------
 df = pd.read_csv("buses.csv")
+raw_df = df[["Route", "Stop", "BusNumber", "StopOrder"]].assign(
+    Minutes=pd.to_datetime(df["Time"], format="%H:%M").dt.hour * 60
+    + pd.to_datetime(df["Time"], format="%H:%M").dt.minute
+)
 df["Time"] = pd.to_datetime(df["Time"])
 df["Time"] = df["Time"].dt.tz_localize("Asia/Tokyo")
 now = pd.Timestamp.utcnow()
@@ -204,6 +218,189 @@ with col2:
         key="destination",
     )
 
+
+# -----------------------------
+# MAP DATA (stations, road paths, ideal schedule)
+# -----------------------------
+stop_coords = pd.read_csv("stops.csv").set_index("Stop")[["Lat", "Lon"]]
+
+
+@st.cache_data(show_spinner=False)
+def road_path(a, b):
+    """Driving path a -> b as [[lat, lon], ...] via OSRM, straight line on failure."""
+    (la, lo), (lb, lob) = a, b
+    try:
+        url = (
+            f"https://router.project-osrm.org/route/v1/driving/{lo},{la};{lob},{lb}"
+            "?overview=full&geometries=geojson"
+        )
+        coords = requests.get(url, timeout=6).json()["routes"][0]["geometry"]["coordinates"]
+        return [[lat, lon] for lon, lat in coords]
+    except Exception:
+        return [[la, lo], [lb, lob]]
+
+
+def map_payload(route, origin, destination, theme):
+    names = route_stops(route)
+    path, stop_list = [], []
+    for i, n in enumerate(names):
+        c = (float(stop_coords.loc[n, "Lat"]), float(stop_coords.loc[n, "Lon"]))
+        if i == 0:
+            path.append(list(c))
+        else:
+            prev = stop_list[-1]
+            seg = road_path((prev["lat"], prev["lon"]), c)
+            path.extend(seg[1:])
+        stop_list.append({"name": n, "lat": c[0], "lon": c[1], "idx": len(path) - 1})
+    idx = {s["name"]: i for i, s in enumerate(stop_list)}
+    trips, shortcuts = [], {}
+    r = raw_df[raw_df["Route"] == route]
+    for bus_no, g in r.groupby("BusNumber"):
+        g = g.sort_values("StopOrder")
+        # A trip that skips stops drives directly between the ones it serves
+        served = [idx[s] for s in g["Stop"]]
+        for i0, i1 in zip(served, served[1:]):
+            if i1 - i0 > 1 and f"{i0}-{i1}" not in shortcuts:
+                a, b = stop_list[i0], stop_list[i1]
+                shortcuts[f"{i0}-{i1}"] = road_path((a["lat"], a["lon"]), (b["lat"], b["lon"]))
+        trips.append({
+            "bus": int(bus_no),
+            "stops": [[idx[s], int(m)] for s, m in zip(g["Stop"], g["Minutes"])],
+        })
+    return {
+        "path": path, "stops": stop_list, "trips": trips, "shortcuts": shortcuts,
+        "origin": idx[origin], "destination": idx[destination], "theme": theme,
+    }
+
+
+MAP_HTML = """
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+  html, body, #map { height: 100%; margin: 0; font-family: system-ui, sans-serif; }
+  .bus { width: 34px; height: 34px; border-radius: 50%; background: #2563eb; color: #fff;
+    border: 3px solid #fff; box-shadow: 0 2px 6px rgba(0,0,0,.4); display: flex;
+    align-items: center; justify-content: center; }
+  .stn { width: 14px; height: 14px; border-radius: 50%; background: #fff;
+    border: 4px solid #1e293b; box-sizing: border-box; box-shadow: 0 1px 4px rgba(0,0,0,.4); }
+  .stn.from { border-color: #16a34a; } .stn.to { border-color: #dc2626; }
+  .lbl { background: rgba(255,255,255,.92); border: 0; box-shadow: 0 1px 3px rgba(0,0,0,.3);
+    font-weight: 600; font-size: 11px; padding: 1px 6px; }
+  .tick b { font-size: 14px; } .tick div { margin-top: 2px; font-size: 13px; }
+  body.dark .leaflet-tile-pane { filter: invert(1) hue-rotate(180deg) brightness(.95) contrast(.9); }
+  body.dark .lbl, body.dark #empty { background: rgba(30,41,59,.92); color: #e2e8f0; }
+  body.dark .leaflet-tooltip-top.lbl::before { border-top-color: rgba(30,41,59,.92); }
+  body.dark .leaflet-popup-content-wrapper, body.dark .leaflet-popup-tip { background: #1e293b; color: #e2e8f0; }
+  body.dark .stn { background: #1e293b; }
+  body.dark .leaflet-control-zoom a { background: #1e293b; color: #e2e8f0; border-color: #475569; }
+  body.dark .leaflet-control-attribution { background: rgba(30,41,59,.8); color: #94a3b8; }
+  body.dark .leaflet-control-attribution a { color: #cbd5e1; }
+  #empty { position: absolute; z-index: 1000; left: 50%; bottom: 12px; transform: translateX(-50%);
+    background: rgba(255,255,255,.95); padding: 4px 12px; border-radius: 999px; font-size: 12px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.3); display: none; }
+</style>
+<div id="map"></div><div id="empty">No buses on the road right now</div>
+<script>
+const D = __DATA__;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const hhmm = m => String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0');
+const BUS = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6v6"/><path d="M15 6v6"/><path d="M2 12h19.6"/><path d="M18 18h3s.5-1.7.8-2.8c.1-.4.2-.8.2-1.2 0-.4-.1-.8-.2-1.2l-1.4-5C20.1 6.8 19.1 6 18 6H4a2 2 0 0 0-2 2v10h3"/><circle cx="7" cy="18" r="2"/><path d="M9 18h5"/><circle cx="16" cy="18" r="2"/></svg>';
+
+document.body.classList.toggle('dark', D.theme === 'dark');
+const map = L.map('map', {scrollWheelZoom: false, closePopupOnClick: true});
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 19, attribution: '&copy; OpenStreetMap contributors'}).addTo(map);
+L.polyline(D.path, {color: '#2563eb', weight: 5, opacity: .55}).addTo(map);
+map.fitBounds(L.polyline(D.path).getBounds(), {padding: [40, 40]});
+
+D.stops.forEach((s, i) => {
+  const cls = i === D.origin ? 'from' : i === D.destination ? 'to' : '';
+  L.marker([s.lat, s.lon], {
+    icon: L.divIcon({className: '', html: '<div class="stn ' + cls + '"></div>', iconSize: [14, 14]}),
+    zIndexOffset: 500,
+  }).addTo(map).bindTooltip(esc(s.name), {permanent: true, direction: 'top', offset: [0, -8], className: 'lbl'});
+});
+
+// cumulative distance along a path
+const cumOf = p => { const c = [0]; for (let i = 1; i < p.length; i++) c.push(c[i - 1] + map.distance(p[i - 1], p[i])); return c; };
+function at(p, c, d) {
+  let i = 1;
+  while (i < c.length - 1 && c[i] < d) i++;
+  const f = c[i] === c[i - 1] ? 0 : (d - c[i - 1]) / (c[i] - c[i - 1]);
+  const a = p[i - 1], b = p[i];
+  return [a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f];
+}
+const cum = cumOf(D.path);
+const stopDist = i => cum[D.stops[i].idx];
+// drive straight between stops a trip serves when it skips the ones in between
+const short = {};
+Object.entries(D.shortcuts).forEach(([k, p]) => {
+  short[k] = {p, c: cumOf(p)};
+  L.polyline(p, {color: '#2563eb', weight: 3, opacity: .5, dashArray: '6 8'}).addTo(map);
+});
+function between(i0, i1, f) {
+  const sc = short[i0 + '-' + i1];
+  if (sc) return at(sc.p, sc.c, sc.c[sc.c.length - 1] * f);
+  return at(D.path, cum, stopDist(i0) + (stopDist(i1) - stopDist(i0)) * f);
+}
+
+// ideal position of a trip at time t (minutes), or null when not traveling
+function position(trip, t) {
+  const s = trip.stops;
+  if (s.length < 2 || t < s[0][1] || t > s[s.length - 1][1]) return null;
+  for (let k = 1; k < s.length; k++) {
+    if (t <= s[k][1]) {
+      const [i0, t0] = s[k - 1], [i1, t1] = s[k];
+      const f = t1 === t0 ? 1 : (t - t0) / (t1 - t0);
+      return between(i0, i1, f);
+    }
+  }
+  return null;
+}
+const timeAt = (trip, stop) => { const h = trip.stops.find(x => x[0] === stop); return h ? hhmm(h[1]) : '–'; };
+
+function tokyoMinutes() {
+  const p = new Intl.DateTimeFormat('en-GB', {timeZone: 'Asia/Tokyo', hour: '2-digit', minute: '2-digit',
+    second: '2-digit', hour12: false}).formatToParts(new Date());
+  const g = k => +p.find(x => x.type === k).value;
+  return (g('hour') % 24) * 60 + g('minute') + g('second') / 60;
+}
+
+const markers = {};
+function tick() {
+  const t = tokyoMinutes();
+  let n = 0;
+  D.trips.forEach(trip => {
+    const pos = position(trip, t);
+    const m = markers[trip.bus];
+    if (!pos) { if (m) { m.remove(); delete markers[trip.bus]; } return; }
+    n++;
+    if (m) { m.setLatLng(pos); return; }
+    const mk = L.marker(pos, {
+      icon: L.divIcon({className: '', html: '<div class="bus">' + BUS + '</div>', iconSize: [34, 34]}),
+      zIndexOffset: 1000,
+    }).addTo(map);
+    mk.bindPopup('<div class="tick"><b>Bus ' + esc(trip.bus) + '</b>' +
+      '<div>Departs ' + esc(D.stops[D.origin].name) + ': <b>' + timeAt(trip, D.origin) + '</b></div>' +
+      '<div>Arrives ' + esc(D.stops[D.destination].name) + ': <b>' + timeAt(trip, D.destination) + '</b></div></div>');
+    markers[trip.bus] = mk;
+  });
+  document.getElementById('empty').style.display = n ? 'none' : 'block';
+}
+tick();
+setInterval(tick, 1000);
+</script>
+"""
+
+def footer():
+    html(
+        '<div class="fine footer">Unofficial app. Times may not be accurate. '
+        'For official information see the '
+        '<a href="https://www.osaka-u.ac.jp/en/access/bus" target="_blank" rel="noopener">'
+        'official bus page</a>.</div>'
+    )
+
+
 # -----------------------------
 # FILTER FUTURE BUSES FROM ORIGIN
 # -----------------------------
@@ -220,6 +417,7 @@ next_buses = origin_df.drop_duplicates("BusNumber").reset_index(drop=True)
 # -----------------------------
 if len(next_buses) == 0:
     html(f'<div class="note">{icon("alert", 20)}<div>No upcoming buses from this stop.</div></div>')
+    footer()
     st.stop()
 
 order = {s: i for i, s in enumerate(stops)}
@@ -281,6 +479,20 @@ with st.container(border=True, key="hero"):
 </div>
 <div class="big">{dep_time.strftime("%H:%M")}</div>
 <div class="sub">{label} from {origin}</div>
+""")
+    try:
+        theme = "dark" if st.context.theme.type == "dark" else "light"
+    except Exception:
+        theme = "light"
+    map_html = MAP_HTML.replace(
+        "__DATA__", json.dumps(map_payload(route, origin, destination, theme)).replace("</", "<\\/")
+    )
+    if hasattr(st, "iframe"):
+        st.iframe(map_html, height=360)
+    else:
+        components.html(map_html, height=360)
+    html('<div class="fine">Not a real-time map: bus positions are estimated from the timetable.</div>')
+    html(f"""
 <div class="stats">
   <div class="stat"><div class="lbl">{icon("timer", 14)} Leaves in</div><div class="val">{fmt_minutes(minutes_left)}</div></div>
   <div class="stat"><div class="lbl">{icon("flag", 14)} Arrives</div><div class="val">{arr_txt}</div></div>
@@ -334,3 +546,5 @@ with st.container(key="nbs"):
             key=f"nb{i}", icon=":material/directions_bus:", use_container_width=True,
             type="primary" if i == sel else "secondary", on_click=go, args=(i,),
         )
+
+footer()
