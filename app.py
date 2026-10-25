@@ -170,6 +170,8 @@ df["Time"] = df["Time"].apply(
     lambda t: now.normalize() + pd.Timedelta(hours=t.hour, minutes=t.minute)
 )
 df.loc[df["Time"] < now, "Time"] += pd.Timedelta(days=1)
+weekday = df["Time"].dt.weekday
+df["Time"] += pd.to_timedelta((weekday >= 5) * (7 - weekday), unit="D")
 
 
 # -----------------------------
@@ -366,12 +368,18 @@ function tokyoMinutes() {
   return (g('hour') % 24) * 60 + g('minute') + g('second') / 60;
 }
 
+const isWeekday = () => {
+  const d = new Intl.DateTimeFormat('en-US', {timeZone: 'Asia/Tokyo', weekday: 'short'}).format(new Date());
+  return d !== 'Sat' && d !== 'Sun';
+};
+
 const markers = {};
 function tick() {
   const t = tokyoMinutes();
+  const running = isWeekday();
   let n = 0;
   D.trips.forEach(trip => {
-    const pos = position(trip, t);
+    const pos = running ? position(trip, t) : null;
     const m = markers[trip.bus];
     if (!pos) { if (m) { m.remove(); delete markers[trip.bus]; } return; }
     n++;
